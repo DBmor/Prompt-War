@@ -3753,3 +3753,62 @@ body {
         background: white;
     }
 }
+/* ===== MOBILE DASHBOARD OVERRIDE ===== */
+@media (max-width: 768px) {
+
+    .dashboard-welcome-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .motivational-card {
+        max-width: 100% !important;
+    }
+
+    .metrics-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .metric-card {
+        width: 100% !important;
+    }
+
+    .quick-actions-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dashboard-hero-split {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-features-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .actions-grid {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .action-log-card {
+        min-width: 100% !important;
+        width: 100% !important;
+        flex: unset !important;
+    }
+
+    .industrial-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .industrial-details-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .chat-bubble {
+        max-width: 95% !important;
+    }
+
+    .chat-input-row {
+        flex-direction: column !important;
+    }
+}
