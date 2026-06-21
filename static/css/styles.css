@@ -3120,15 +3120,97 @@ body {
         display: none !important;
     }
 
-    /* Metrics & Quick actions stack vertically */
+    /* Metrics & Quick actions stack for mobile, with balanced widths */
     .metrics-row {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 1rem;
+    }
+
+    .metric-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 1rem !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        min-height: 110px;
+    }
+
+    .metric-icon-box {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0.75rem;
+    }
+
+    .metric-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .metric-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        font-size: 0.85rem;
+    }
+
+    .metric-value {
+        font-size: 1.7rem;
+        line-height: 1.1;
+        margin: 0;
+    }
+
+    .metric-sub {
+        font-size: 0.75rem;
     }
 
     .quick-actions-row {
         grid-template-columns: 1fr !important;
         gap: 1rem;
+    }
+
+    .quick-action-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start;
+        padding: 1rem !important;
+        gap: 1rem !important;
+        min-height: 88px;
+    }
+
+    .qa-icon {
+        min-width: 48px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .qa-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .qa-info h4 {
+        font-size: 1rem;
+        margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .qa-info p {
+        font-size: 0.85rem;
+        margin: 0;
+        color: var(--text-secondary);
     }
 
     /* Dashboard hero becomes single column */
@@ -3141,13 +3223,6 @@ body {
     .gauge-card-left,
     .info-card-right {
         padding: 1rem !important;
-    }
-
-    /* Make cards flow vertically and avoid forcing horizontal space */
-    .metric-card,
-    .quick-action-card {
-        flex-direction: column;
-        align-items: flex-start;
     }
 
     /* Charts stack vertically */
@@ -3197,8 +3272,6 @@ body {
     .quick-action-card,
     .action-log-card {
         min-width: 0 !important;
-        flex: 1 1 100% !important;
-        width: 100% !important;
     }
 
     .actions-grid {
