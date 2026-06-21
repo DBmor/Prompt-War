@@ -3122,6 +3122,8 @@ body {
 
     /* Metrics & Quick actions stack for mobile, with balanced widths */
     .metrics-row {
+        width: 100%;
+        max-width: 100%;
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 1rem;
     }
@@ -3130,23 +3132,25 @@ body {
         width: 100% !important;
         min-width: 0 !important;
         padding: 1rem !important;
+        display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
         justify-content: flex-start !important;
+        gap: 0.75rem;
         min-height: 110px;
     }
 
     .metric-icon-box {
         width: 48px;
         height: 48px;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
     }
 
     .metric-info {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 0.35rem;
+        gap: 0.25rem;
     }
 
     .metric-label {
@@ -3168,6 +3172,8 @@ body {
     }
 
     .quick-actions-row {
+        width: 100%;
+        max-width: 100%;
         grid-template-columns: 1fr !important;
         gap: 1rem;
     }
@@ -3194,6 +3200,8 @@ body {
     }
 
     .qa-info {
+        flex: 1;
+        min-width: 0;
         display: flex;
         flex-direction: column;
         gap: 0.3rem;
@@ -3215,6 +3223,8 @@ body {
 
     /* Dashboard hero becomes single column */
     .dashboard-hero-split {
+        width: 100%;
+        max-width: 100%;
         grid-template-columns: 1fr !important;
         gap: 1rem;
         margin-bottom: 1rem;
@@ -3222,6 +3232,7 @@ body {
 
     .gauge-card-left,
     .info-card-right {
+        width: 100%;
         padding: 1rem !important;
     }
 
@@ -3239,8 +3250,11 @@ body {
     .card-selector-grid.cols-2,
     .card-selector-grid.cols-3,
     .card-selector-grid.cols-4,
-    .hero-features-grid {
+    .hero-features-grid,
+    .strategy-cards-grid {
         grid-template-columns: 1fr !important;
+        width: 100%;
+        max-width: 100%;
         gap: 0.75rem;
     }
 
@@ -3272,9 +3286,11 @@ body {
     .quick-action-card,
     .action-log-card {
         min-width: 0 !important;
+        width: 100% !important;
     }
 
     .actions-grid {
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -3282,6 +3298,8 @@ body {
 
     /* Landing / welcome: force single-column and smaller titles */
     .dashboard-welcome-header {
+        width: 100%;
+        max-width: 100%;
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
@@ -3290,7 +3308,8 @@ body {
 
     .welcome-title {
         font-size: 1.25rem !important;
-        line-height: 1.2;
+        line-height: 1.3;
+        white-space: normal;
     }
 
     /* Auth landing split to single column (ensure any inline styles don't overflow) */
@@ -3305,9 +3324,9 @@ body {
 
     /* AI Coach: remove fixed viewport height, allow natural flow, reduce padding */
     .ai-coach-container {
-        height: auto !important;
-        max-width: 100% !important;
         width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
         margin: 0.5rem 0 !important;
         border-radius: 12px;
     }
@@ -3318,19 +3337,40 @@ body {
     }
 
     .chat-display-area {
+        width: 100% !important;
+        max-width: 100% !important;
         padding: 1rem !important;
         gap: 0.75rem;
     }
 
     .chat-bubble {
-        max-width: 100% !important;
+        max-width: 90% !important;
         box-sizing: border-box;
         padding: 0.75rem 1rem !important;
         font-size: 0.9rem;
+        white-space: normal;
+        word-break: break-word;
     }
 
     .starter-chips-container {
         padding: 0.5rem 1rem !important;
+    }
+
+    .chat-input-row {
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+
+    .chat-input-row input {
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+    }
+
+    .chat-input-row button {
+        flex: 0 0 auto;
     }
 
     /* Reduce large card paddings that may cause overflow */
