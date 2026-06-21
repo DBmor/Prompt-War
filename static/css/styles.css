@@ -434,12 +434,12 @@ body {
 }
 
 .welcome-card {
-    padding: 1.25rem;
+    padding: 2rem;
     background: linear-gradient(135deg, rgba(17, 24, 39, 0.7), rgba(4, 120, 87, 0.1));
 }
 
 .welcome-card h1 {
-    font-size: 1.5rem;
+    font-size: 2.25rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
 }
@@ -447,7 +447,6 @@ body {
 .welcome-card p {
     color: var(--text-secondary);
     font-weight: 500;
-    font-size: 0.9rem;
 }
 
 .dashboard-grid {
@@ -469,28 +468,27 @@ body {
 }
 
 .chart-container-card {
-    padding: 1rem;
+    padding: 1.75rem;
 }
 
 .chart-container-card h3 {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .chart-flex {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    flex-direction: column;
 }
 
 .chart-box {
-    flex: 1 1 100%;
-    min-height: 200px;
+    flex: 1 1 300px;
+    min-height: 250px;
     position: relative;
     background: rgba(0, 0, 0, 0.15);
     border-radius: 12px;
-    padding: 0.75rem;
+    padding: 1rem;
 }
 
 .fallback-message {
@@ -519,12 +517,12 @@ body {
 
 .strategy-cards-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
 }
 
 .strategy-card {
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 12px;
     border: 1px solid var(--glass-border);
     transition: var(--transition-smooth);
@@ -570,19 +568,19 @@ body {
 
 /* HISTORY LOG */
 .history-card {
-    padding: 1rem;
+    padding: 1.75rem;
     height: 100%;
 }
 
 .history-card h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .history-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    max-height: 400px;
+    gap: 1rem;
+    max-height: 600px;
     overflow-y: auto;
     padding-right: 0.25rem;
 }
@@ -626,28 +624,26 @@ body {
    ========================================================================== */
 
 .calculator-container {
-    max-width: 100%;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0;
 }
 
 .calc-card {
-    padding: 1.25rem;
+    padding: 2.5rem;
 }
 
 .calc-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     text-align: center;
 }
 
 .calc-header h2 {
-    font-size: 1.35rem;
+    font-size: 1.85rem;
     margin-bottom: 0.5rem;
 }
 
 .calc-header p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
 }
 
 .calc-step-panel {
@@ -705,35 +701,39 @@ body {
 
 .blogs-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+}
+
+@media (max-width: 900px) {
+    .blogs-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .feed-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .feed-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .blog-post-card {
-    padding: 1.25rem;
+    padding: 1.75rem;
 }
 
 .blog-post-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 0.75rem;
-    flex-direction: column;
-    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .blog-author-meta {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
 }
 
@@ -742,26 +742,25 @@ body {
 }
 
 .blog-post-title {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .blog-body-text {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     white-space: pre-line;
 }
 
 .blog-actions-bar {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     border-top: 1px solid var(--glass-border);
-    padding-top: 0.75rem;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .action-btn-like {
@@ -769,12 +768,12 @@ body {
     border: none;
     color: var(--text-secondary);
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.4rem;
     transition: var(--transition-smooth);
 }
 
@@ -792,50 +791,49 @@ body {
 .comments-thread {
     background: rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    padding: 0.75rem;
+    padding: 1rem;
 }
 
 .comments-list-box {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    max-height: 150px;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    max-height: 200px;
     overflow-y: auto;
 }
 
 .comment-bubble {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     border-bottom: 1px solid rgba(255,255,255,0.03);
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
 }
 
 .comment-author {
     font-weight: 700;
     color: var(--mint-green);
-    margin-right: 0.3rem;
+    margin-right: 0.5rem;
 }
 
 .comment-input-row {
     display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
 .comment-input-row input {
     flex: 1;
-    min-width: 100px;
     background: rgba(0,0,0,0.2);
     border: 1px solid var(--glass-border);
     border-radius: 8px;
-    padding: 0.4rem 0.6rem;
+    padding: 0.5rem 0.75rem;
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 .post-blog-card {
-    padding: 1.25rem;
-    position: relative;
+    padding: 1.75rem;
+    position: sticky;
+    top: 90px;
 }
 
 .post-blog-card h3 {
@@ -853,38 +851,37 @@ body {
 
 .articles-header {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .articles-cards-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
 }
 
 .article-card {
-    padding: 1.25rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: auto;
-    min-height: 250px;
+    height: 320px;
 }
 
 .article-card-header h3 {
-    font-size: 1.15rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
     font-weight: 700;
 }
 
 .article-card-body {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 /* ==========================================================================
@@ -892,29 +889,29 @@ body {
    ========================================================================== */
 
 .admin-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .admin-mod-card {
-    padding: 1.25rem;
+    padding: 2rem;
 }
 
 .table-container {
     width: 100%;
     overflow-x: auto;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .admin-table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .admin-table th,
 .admin-table td {
-    padding: 0.75rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--glass-border);
 }
 
@@ -922,7 +919,7 @@ body {
     font-weight: 700;
     color: var(--mint-green);
     text-transform: uppercase;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     letter-spacing: 0.5px;
 }
 
@@ -969,15 +966,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem;
+    padding: 1rem;
     animation: fade-in 0.3s ease-out;
 }
 
 .modal-card {
     width: 100%;
-    max-width: 600px;
-    padding: 1.25rem;
-    max-height: 90vh;
+    max-width: 650px;
+    padding: 2rem;
+    max-height: 85vh;
     display: flex;
     flex-direction: column;
 }
@@ -986,16 +983,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--glass-border);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
 }
 
 .close-modal-btn {
     background: none;
     border: none;
     color: var(--text-secondary);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     cursor: pointer;
     transition: var(--transition-smooth);
 }
@@ -2728,1087 +2725,5 @@ body {
     }
     .auth-landing-container h1 {
         font-size: 2rem !important;
-    }
-}
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES - TABLET (768px and up)
-   ========================================================================== */
-
-@media (min-width: 768px) {
-    .app-header {
-        padding: 1rem 2rem;
-    }
-
-    .app-logo {
-        font-size: 1.4rem;
-    }
-
-    .user-menu {
-        gap: 1rem;
-    }
-
-    .points-badge {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
-        gap: 0.5rem;
-    }
-
-    .form-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-    }
-
-    .auth-section {
-        padding: 3rem 1rem;
-    }
-
-    .auth-card {
-        padding: 2rem;
-    }
-
-    .app-content {
-        padding: 1.5rem 1.5rem;
-    }
-
-    .welcome-card {
-        padding: 1.75rem;
-    }
-
-    .welcome-card h1 {
-        font-size: 2rem;
-    }
-
-    .chart-flex {
-        flex-direction: row;
-        gap: 1.5rem;
-    }
-
-    .chart-box {
-        flex: 1 1 300px;
-        min-height: 250px;
-        padding: 1rem;
-    }
-
-    .strategy-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-    }
-
-    .blogs-grid {
-        grid-template-columns: 1fr 350px;
-        gap: 2rem;
-    }
-
-    .articles-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .article-card {
-        padding: 1.5rem;
-        height: 320px;
-    }
-
-    .article-card-body {
-        -webkit-line-clamp: 5;
-    }
-
-    .dashboard-hero-split {
-        grid-template-columns: 300px 1fr;
-    }
-
-    .calculator-container {
-        max-width: 700px;
-    }
-
-    .calc-card {
-        padding: 2rem;
-    }
-
-    .calc-header h2 {
-        font-size: 1.6rem;
-    }
-
-    .modal-card {
-        padding: 1.75rem;
-    }
-
-    .card-selector-grid.cols-3,
-    .card-selector-grid.cols-4 {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES - DESKTOP (1024px and up)
-   ========================================================================== */
-
-@media (min-width: 1024px) {
-    .app-header {
-        padding: 1rem 2rem;
-    }
-
-    .app-logo {
-        font-size: 1.5rem;
-    }
-
-    .app-nav {
-        display: flex;
-    }
-
-    .user-menu {
-        gap: 1.5rem;
-    }
-
-    .points-badge {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-        gap: 0.5rem;
-    }
-
-    .form-row {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .auth-section {
-        padding: 4rem 2rem;
-    }
-
-    .auth-card {
-        padding: 2.5rem;
-    }
-
-    .app-content {
-        padding: 2rem 2rem;
-    }
-
-    .welcome-card {
-        padding: 2rem;
-    }
-
-    .welcome-card h1 {
-        font-size: 2.25rem;
-    }
-
-    .chart-container-card {
-        padding: 1.75rem;
-    }
-
-    .chart-flex {
-        gap: 1.5rem;
-        flex-direction: row;
-    }
-
-    .chart-box {
-        flex: 1 1 400px;
-        min-height: 300px;
-        padding: 1.5rem;
-    }
-
-    .strategy-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
-    }
-
-    .blogs-grid {
-        grid-template-columns: 1fr 400px;
-        gap: 2.5rem;
-    }
-
-    .post-blog-card {
-        position: sticky;
-        top: 90px;
-    }
-
-    .articles-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-    }
-
-    .article-card {
-        padding: 2rem;
-        height: 360px;
-    }
-
-    .article-card-body {
-        -webkit-line-clamp: 5;
-    }
-
-    .dashboard-hero-split {
-        grid-template-columns: 350px 1fr;
-        gap: 2.5rem;
-    }
-
-    .calculator-container {
-        max-width: 800px;
-    }
-
-    .calc-card {
-        padding: 2.5rem;
-    }
-
-    .calc-header h2 {
-        font-size: 1.85rem;
-    }
-
-    .modal-card {
-        max-width: 700px;
-        padding: 2rem;
-    }
-
-    .card-selector-grid.cols-4,
-    .card-selector-grid.cols-5 {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .card-selector-grid.cols-5 {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES - LARGE SCREENS (1440px and up)
-   ========================================================================== */
-
-@media (min-width: 1440px) {
-    .app-content {
-        max-width: 1200px;
-        padding: 2.5rem auto;
-    }
-
-    .welcome-card h1 {
-        font-size: 2.75rem;
-    }
-
-    .dashboard-hero-split {
-        gap: 3rem;
-    }
-
-    .chart-box {
-        flex: 1 1 450px;
-    }
-
-    .articles-cards-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* ==========================================================================
-   TOUCH-DEVICE OPTIMIZATIONS
-   ========================================================================== */
-
-@media (hover: none) and (pointer: coarse) {
-    .btn,
-    .selector-card,
-    .feature-block,
-    .blog-post-card,
-    .action-btn-like {
-        min-height: 44px;
-        padding: 0.75rem 1.25rem;
-    }
-
-    .selector-card {
-        padding: 1.5rem 1rem;
-    }
-}
-
-/* ==========================================================================
-   PRINT STYLES
-   ========================================================================== */
-
-@media print {
-    body {
-        background: white;
-        color: #000;
-    }
-
-    .app-header,
-    .sidebar,
-    .modal-overlay,
-    .notification {
-        display: none;
-    }
-
-    .app-content {
-        max-width: 100%;
-        padding: 0;
-    }
-
-    .glass-card {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        background: white;
-    }
-}
-
-/* ==========================================================================
-   MOBILE-SPECIFIC ADJUSTMENTS (screens below 768px)
-   ========================================================================== */
-
-@media (max-width: 767px) {
-    /* Prevent horizontal scrolling on small devices */
-    html, body, .app-layout {
-        overflow-x: hidden;
-    }
-
-    /* Sidebar: hidden by default, slides in when `.open` is added */
-    .app-sidebar {
-        transform: translateX(-100%);
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 280px;
-        padding: 1.5rem 1rem;
-        z-index: 1200;
-        box-shadow: 2px 0 18px rgba(0,0,0,0.6);
-        background: linear-gradient(180deg, #091316 0%, #0c1817 100%);
-        transition: transform 0.28s ease;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .app-sidebar.open {
-        transform: translateX(0);
-    }
-
-    /* Overlay behind sidebar when open (use by JS adding .open) */
-    .sidebar-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-        z-index: 1100;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-
-    .sidebar-overlay.open {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Main content should use full width when sidebar hidden */
-    .app-main-content {
-        margin-left: 0 !important;
-        width: 100%;
-    }
-
-    .app-content {
-        padding: 1rem !important;
-        width: 100%;
-    }
-
-    /* Show a hamburger button in the top bar (JS should toggle .open on .app-sidebar) */
-    .hamburger-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
-        font-size: 1.25rem;
-        background: transparent;
-        border: none;
-        color: var(--text-primary);
-        cursor: pointer;
-        border-radius: 8px;
-        margin-right: 0.5rem;
-    }
-
-    /* Hide desktop nav on mobile (already hidden but ensure) */
-    .app-nav {
-        display: none !important;
-    }
-
-    /* Mobile-first dashboard stack for all cards */
-    .metrics-row {
-        width: 100%;
-        max-width: 100%;
-        grid-template-columns: 1fr !important;
-        gap: 1rem;
-    }
-
-    .metric-card {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        padding: 1rem !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 0.75rem;
-        min-height: 110px;
-    }
-
-    .metric-icon-box {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 0.5rem;
-    }
-
-    .metric-info {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    .metric-label {
-        white-space: normal;
-        overflow-wrap: break-word;
-        max-width: 100%;
-        font-size: 0.9rem;
-    }
-
-    .metric-value {
-        font-size: 1.7rem;
-        line-height: 1.1;
-        margin: 0;
-    }
-
-    .metric-sub {
-        font-size: 0.75rem;
-    }
-
-    .quick-actions-row {
-        width: 100%;
-        max-width: 100%;
-        grid-template-columns: 1fr !important;
-        gap: 1rem;
-    }
-
-    .quick-action-card {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-start;
-        padding: 1rem !important;
-        gap: 1rem !important;
-        min-height: 88px;
-    }
-
-    .qa-icon {
-        min-width: 48px;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-    }
-
-    .qa-info {
-        flex: 1;
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-    }
-
-    .qa-info h4 {
-        font-size: 1rem;
-        margin-bottom: 0;
-        white-space: normal;
-        overflow-wrap: break-word;
-        word-break: break-word;
-    }
-
-    .qa-info p {
-        font-size: 0.85rem;
-        margin: 0;
-        color: var(--text-secondary);
-    }
-
-    /* Dashboard hero stacked vertically */
-    .dashboard-hero-split {
-        width: 100%;
-        max-width: 100%;
-        grid-template-columns: 1fr !important;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .gauge-card-left,
-    .info-card-right {
-        width: 100%;
-        max-width: 100%;
-        padding: 1rem !important;
-    }
-
-    /* Ensure feature and strategy grids collapse fully */
-    .hero-features-grid,
-    .strategy-cards-grid {
-        width: 100%;
-        max-width: 100%;
-        grid-template-columns: 1fr !important;
-        gap: 1rem;
-    }
-
-    .actions-grid {
-        width: 100%;
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .glass-card {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    .dashboard-welcome-header {
-        width: 100%;
-        max-width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .welcome-title {
-        font-size: 1.25rem !important;
-        line-height: 1.3;
-        white-space: normal;
-    }
-
-    .chart-flex {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .chart-box {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-height: 220px;
-    }
-
-    .btn-block,
-    .btn {
-        width: 100% !important;
-        box-sizing: border-box;
-    }
-
-    .btn:not(.btn-outline) {
-        min-height: 44px;
-    }
-
-    .chart-box {
-        min-height: 160px;
-    }
-
-    /* Ensure selectors and feature grids collapse to single column where needed */
-    .card-selector-grid.cols-2,
-    .card-selector-grid.cols-3,
-    .card-selector-grid.cols-4,
-    .hero-features-grid,
-    .strategy-cards-grid {
-        grid-template-columns: 1fr !important;
-        width: 100%;
-        max-width: 100%;
-        gap: 0.75rem;
-    }
-
-    /* Reduce large paddings for mobile comfort */
-    .app-header,
-    .app-top-bar {
-        padding: 0.5rem 0.75rem;
-    }
-
-    /* Make auth layout comfortable on small screens */
-    .auth-section {
-        padding: 1.25rem 0.75rem;
-    }
-
-    /* Avoid any accidental horizontal overflow caused by wide elements */
-    img, iframe, canvas {
-        max-width: 100%;
-        height: auto;
-    }
-
-    /* Fix overflowing metric & action cards */
-    .metrics-row,
-    .quick-actions-row,
-    .actions-grid {
-        width: 100%;
-    }
-
-    .metric-card,
-    .quick-action-card,
-    .action-log-card {
-        min-width: 0 !important;
-        width: 100% !important;
-    }
-
-    .actions-grid {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    /* Landing / welcome: force single-column and smaller titles */
-    .dashboard-welcome-header {
-        width: 100%;
-        max-width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .welcome-title {
-        font-size: 1.25rem !important;
-        line-height: 1.3;
-        white-space: normal;
-    }
-
-    /* Auth landing split to single column (ensure any inline styles don't overflow) */
-    .auth-landing-container {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem !important;
-    }
-
-    .auth-landing-container .animate-gradient-text {
-        font-size: 1.6rem !important;
-    }
-
-    /* AI Coach: remove fixed viewport height, allow natural flow, reduce padding */
-    .ai-coach-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 1rem !important;
-        margin: 0.5rem 0 !important;
-        border-radius: 12px;
-    }
-
-    .coach-header {
-        padding: 0.6rem 1rem !important;
-        gap: 0.5rem;
-    }
-
-    .chat-display-area {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 1rem !important;
-        gap: 0.75rem;
-    }
-
-    .chat-bubble {
-        max-width: 90% !important;
-        box-sizing: border-box;
-        padding: 0.75rem 1rem !important;
-        font-size: 0.9rem;
-        white-space: normal;
-        word-break: break-word;
-    }
-
-    .starter-chips-container {
-        padding: 0.5rem 1rem !important;
-    }
-
-    .chat-input-row {
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 0.5rem !important;
-    }
-
-    .chat-input-row input {
-        flex: 1 1 0;
-        min-width: 0;
-        width: auto;
-    }
-
-    .chat-input-row button {
-        flex: 0 0 auto;
-    }
-
-    /* Reduce large card paddings that may cause overflow */
-    .glass-card,
-    .metric-card,
-    .quick-action-card,
-    .action-log-card {
-        padding-left: 0.9rem !important;
-        padding-right: 0.9rem !important;
-        padding-top: 0.9rem !important;
-        padding-bottom: 0.9rem !important;
-    }
-
-    /* Ensure no horizontal scrolling */
-    body, html {
-        overflow-x: hidden !important;
-    }
-}
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES - TABLET (768px and up)
-   ========================================================================== */
-
-@media (min-width: 768px) {
-    .app-header {
-        padding: 1rem 2rem;
-    }
-
-    .app-logo {
-        font-size: 1.4rem;
-    }
-
-    .user-menu {
-        gap: 1rem;
-    }
-
-    .points-badge {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
-        gap: 0.5rem;
-    }
-
-    .form-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-    }
-
-    .auth-section {
-        padding: 3rem 1rem;
-    }
-
-    .auth-card {
-        padding: 2rem;
-    }
-
-    .app-content {
-        padding: 1.5rem 1.5rem;
-    }
-
-    .welcome-card {
-        padding: 1.75rem;
-    }
-
-    .welcome-card h1 {
-        font-size: 2rem;
-    }
-
-    .chart-flex {
-        flex-direction: row;
-        gap: 1.5rem;
-    }
-
-    .chart-box {
-        flex: 1 1 300px;
-        min-height: 250px;
-        padding: 1rem;
-    }
-
-    .strategy-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-    }
-
-    .blogs-grid {
-        grid-template-columns: 1fr 350px;
-        gap: 2rem;
-    }
-
-    .articles-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .article-card {
-        padding: 1.5rem;
-        height: 320px;
-    }
-
-    .article-card-body {
-        -webkit-line-clamp: 5;
-    }
-
-    .dashboard-hero-split {
-        grid-template-columns: 300px 1fr;
-    }
-
-    .calculator-container {
-        max-width: 700px;
-    }
-
-    .calc-card {
-        padding: 2rem;
-    }
-
-    .calc-header h2 {
-        font-size: 1.6rem;
-    }
-
-    .modal-card {
-        padding: 1.75rem;
-    }
-
-    .card-selector-grid.cols-3,
-    .card-selector-grid.cols-4 {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES - DESKTOP (1024px and up)
-   ========================================================================== */
-
-@media (min-width: 1024px) {
-    .app-header {
-        padding: 1rem 2rem;
-    }
-
-    .app-logo {
-        font-size: 1.5rem;
-    }
-
-    .app-nav {
-        display: flex;
-    }
-
-    .user-menu {
-        gap: 1.5rem;
-    }
-
-    .points-badge {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-        gap: 0.5rem;
-    }
-
-    .form-row {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .auth-section {
-        padding: 4rem 2rem;
-    }
-
-    .auth-card {
-        padding: 2.5rem;
-    }
-
-    .app-content {
-        padding: 2rem 2rem;
-    }
-
-    .welcome-card {
-        padding: 2rem;
-    }
-
-    .welcome-card h1 {
-        font-size: 2.25rem;
-    }
-
-    .chart-container-card {
-        padding: 1.75rem;
-    }
-
-    .chart-flex {
-        gap: 1.5rem;
-        flex-direction: row;
-    }
-
-    .chart-box {
-        flex: 1 1 400px;
-        min-height: 300px;
-        padding: 1.5rem;
-    }
-
-    .strategy-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
-    }
-
-    .blogs-grid {
-        grid-template-columns: 1fr 400px;
-        gap: 2.5rem;
-    }
-
-    .post-blog-card {
-        position: sticky;
-        top: 90px;
-    }
-
-    .articles-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-    }
-
-    .article-card {
-        padding: 2rem;
-        height: 360px;
-    }
-
-    .article-card-body {
-        -webkit-line-clamp: 5;
-    }
-
-    .dashboard-hero-split {
-        grid-template-columns: 350px 1fr;
-        gap: 2.5rem;
-    }
-
-    .calculator-container {
-        max-width: 800px;
-    }
-
-    .calc-card {
-        padding: 2.5rem;
-    }
-
-    .calc-header h2 {
-        font-size: 1.85rem;
-    }
-
-    .modal-card {
-        max-width: 700px;
-        padding: 2rem;
-    }
-
-    .card-selector-grid.cols-4,
-    .card-selector-grid.cols-5 {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .card-selector-grid.cols-5 {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES - LARGE SCREENS (1440px and up)
-   ========================================================================== */
-
-@media (min-width: 1440px) {
-    .app-content {
-        max-width: 1200px;
-        padding: 2.5rem auto;
-    }
-
-    .welcome-card h1 {
-        font-size: 2.75rem;
-    }
-
-    .dashboard-hero-split {
-        gap: 3rem;
-    }
-
-    .chart-box {
-        flex: 1 1 450px;
-    }
-
-    .articles-cards-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* ==========================================================================
-   TOUCH-DEVICE OPTIMIZATIONS
-   ========================================================================== */
-
-@media (hover: none) and (pointer: coarse) {
-    .btn,
-    .selector-card,
-    .feature-block,
-    .blog-post-card,
-    .action-btn-like {
-        min-height: 44px;
-        padding: 0.75rem 1.25rem;
-    }
-
-    .selector-card {
-        padding: 1.5rem 1rem;
-    }
-}
-
-/* ==========================================================================
-   PRINT STYLES
-   ========================================================================== */
-
-@media print {
-    body {
-        background: white;
-        color: #000;
-    }
-
-    .app-header,
-    .sidebar,
-    .modal-overlay,
-    .notification {
-        display: none;
-    }
-
-    .app-content {
-        max-width: 100%;
-        padding: 0;
-    }
-
-    .glass-card {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        background: white;
-    }
-}
-/* ===== MOBILE DASHBOARD OVERRIDE ===== */
-@media (max-width: 768px) {
-
-    .dashboard-welcome-header {
-        flex-direction: column !important;
-        align-items: stretch !important;
-    }
-
-    .motivational-card {
-        max-width: 100% !important;
-    }
-
-    .metrics-row {
-        grid-template-columns: 1fr !important;
-    }
-
-    .metric-card {
-        width: 100% !important;
-    }
-
-    .quick-actions-row {
-        grid-template-columns: 1fr !important;
-    }
-
-    .dashboard-hero-split {
-        grid-template-columns: 1fr !important;
-    }
-
-    .hero-features-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .actions-grid {
-        display: flex !important;
-        flex-direction: column !important;
-    }
-
-    .action-log-card {
-        min-width: 100% !important;
-        width: 100% !important;
-        flex: unset !important;
-    }
-
-    .industrial-stats-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .industrial-details-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .chat-bubble {
-        max-width: 95% !important;
-    }
-
-    .chat-input-row {
-        flex-direction: column !important;
     }
 }
