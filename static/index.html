@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioLedger - Gamified Carbon Footprint Platform</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/styles.css?v=3">
+</head>
+<body>
+    <!-- Animated Futuristic Neural Network Background Canvas -->
+    <canvas id="neural-canvas" class="bg-neural-canvas"></canvas>
+
+    <!-- Layout Wrapper -->
+    <div class="app-layout">
+        <!-- Vertical Left Sidebar (Hidden for guest) -->
+        <aside class="app-sidebar" id="sidebar-container" style="display: none;">
+            <div class="sidebar-brand">
+                <span class="logo-leaf">☘</span>
+                <span class="logo-text">Bio<span class="highlight-text">Ledger</span></span>
+            </div>
+            
+            <nav class="sidebar-menu" id="sidebar-nav">
+                <button class="sidebar-link active" onclick="switchTab('dashboard')" id="nav-dashboard">
+                    <span class="link-icon">📊</span>
+                    <span class="link-label">Dashboard</span>
+                </button>
+                <button class="sidebar-link" onclick="switchTab('calculator')" id="nav-calculator">
+                    <span class="link-icon">🧮</span>
+                    <span class="link-label">Calculator</span>
+                </button>
+                <button class="sidebar-link common-only" onclick="switchTab('leaderboard')" id="nav-leaderboard">
+                    <span class="link-icon">🏆</span>
+                    <span class="link-label">Leaderboard</span>
+                </button>
+                <button class="sidebar-link" onclick="switchTab('blogs')" id="nav-blogs">
+                    <span class="link-icon">💬</span>
+                    <span class="link-label">Community Blog</span>
+                </button>
+                <button class="sidebar-link" onclick="switchTab('articles')" id="nav-articles">
+                    <span class="link-icon">📖</span>
+                    <span class="link-label">Library Articles</span>
+                </button>
+                <button class="sidebar-link common-only" onclick="switchTab('ai-coach')" id="nav-ai-coach">
+                    <span class="link-icon">🤖</span>
+                    <span class="link-label">AI Coach</span>
+                </button>
+                <button class="sidebar-link admin-only" onclick="switchTab('admin-panel')" id="nav-admin-panel" style="display: none;">
+                    <span class="link-icon">⚙️</span>
+                    <span class="link-label">Admin Panel</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-profile">
+                <div class="user-avatar-circle" id="user-avatar-badge">U</div>
+                <div class="user-metadata">
+                    <span class="user-fullname" id="user-display-name">User</span>
+                    <span class="user-role-text" id="user-display-role">Common</span>
+                </div>
+                <button class="logout-btn-icon" onclick="handleLogout()" title="Logout">🚪</button>
+            </div>
+        </aside>
+
+        <!-- Main Panel Content -->
+        <div class="app-main-content">
+            <!-- Top Header Bar (Hidden for guest) -->
+            <header class="app-top-bar" id="top-bar-container" style="display: none;">
+                <div class="top-bar-left">
+                    <div class="search-box-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search eco tips, logs, articles..." class="search-input" id="search-input">
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="points-badge common-only" id="points-container" style="display: none;">
+                        <span class="points-glow">⚡</span>
+                        <span class="points-value" id="points-val">0</span> <span class="points-label">pts</span>
+                    </div>
+                    <div id="auth-buttons">
+                        <button class="btn btn-outline" onclick="showAuthScreen('login')">Login</button>
+                    </div>
+                </div>
+            </header>
+
+            <main class="app-content">
+
+        <!-- Notification Banner -->
+        <div id="notification-banner" class="notification" style="display: none;">
+            <span id="notification-msg"></span>
+            <button class="close-notification" onclick="closeNotification()">×</button>
+        </div>
+
+        <!-- AUTH SCREEN (GUEST) -->
+        <section id="view-auth" class="auth-section" style="max-width: 1200px; margin: 0 auto; width: 100%;">
+            <div class="auth-landing-container">
+                <!-- Info Column (Preview of features & pitch) -->
+                <div class="landing-info-col">
+                    <span class="badge" style="margin-bottom: 1rem; background: rgba(16, 185, 129, 0.12); color: var(--mint-green); border-color: rgba(16, 185, 129, 0.25);">🌱 Unified Sustainability Platform</span>
+                    <h1 class="animate-gradient-text" style="font-size: 2.75rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; text-transform: none; text-align: left;">BioLedger Carbon Auditing</h1>
+                    <p class="text-muted" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">
+                        Bridging personal lifestyle footprints and Indian heavy-industry regulatory compliance under a unified ledger. Complete carbon assessments, log green offsets, publish community articles, and climb the Standings podium.
+                    </p>
+                    
+                    <!-- Feature highlights list -->
+                    <div class="landing-features-list" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                        <div class="landing-feature-item" style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <span class="feature-icon" style="font-size: 1.5rem; background: rgba(16, 185, 129, 0.08); padding: 0.5rem; border-radius: 8px;">🧮</span>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary);">Dual Carbon Calculators</h4>
+                                <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.2rem;">Detailed multi-step lifestyle assessments for B2C users, and Scope 1 & 2 audit intensity checks following Indian CCTS mandates for B2B heavy industries.</p>
+                            </div>
+                        </div>
+
+                        <div class="landing-feature-item" style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <span class="feature-icon" style="font-size: 1.5rem; background: rgba(6, 182, 212, 0.08); padding: 0.5rem; border-radius: 8px;">🤖</span>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary);">Gemini AI Sustainability Coach</h4>
+                                <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.2rem;">Get customized, real-time advice on grid loads, fossil-fuel savings, carbon compliance boundaries, and progressive decarbonization strategies.</p>
+                            </div>
+                        </div>
+
+                        <div class="landing-feature-item" style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <span class="feature-icon" style="font-size: 1.5rem; background: rgba(245, 158, 11, 0.08); padding: 0.5rem; border-radius: 8px;">💬</span>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary);">Green Logs & Moderation</h4>
+                                <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.2rem;">Publish community markdown blogs (+100 pts on admin approval), leave comments (+5 pts), and review library articles to accumulate eco points.</p>
+                            </div>
+                        </div>
+
+                        <div class="landing-feature-item" style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <span class="feature-icon" style="font-size: 1.5rem; background: rgba(59, 130, 246, 0.08); padding: 0.5rem; border-radius: 8px;">🏆</span>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary);">Eco Leaderboard Standing</h4>
+                                <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.2rem;">Log offsetting deeds (transport comms, vegetarian food, HVAC adjustments) to claim milestones and compete on the global podium.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="landing-form-col">
+                    <div class="glass-card auth-card" style="margin: 0 auto;">
+                        <div class="auth-tabs">
+                            <button class="auth-tab-btn active" id="tab-login" onclick="toggleAuthTab('login')">Login</button>
+                            <button class="auth-tab-btn" id="tab-register" onclick="toggleAuthTab('register')">Register</button>
+                        </div>
+
+                        <div class="auth-form-wrapper">
+                            <!-- Login Form -->
+                            <form id="form-login" onsubmit="handleLogin(event)">
+                                <div class="form-group">
+                                    <label for="login-username">Username</label>
+                                    <input type="text" id="login-username" required placeholder="Enter username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-password">Password</label>
+                                    <input type="password" id="login-password" required placeholder="Enter password">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            </form>
+
+                            <!-- Register Form -->
+                            <form id="form-register" onsubmit="handleRegister(event)" style="display: none;">
+                                <div class="form-group">
+                                    <label for="reg-username">Username</label>
+                                    <input type="text" id="reg-username" required placeholder="Choose a username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-email">Email Address</label>
+                                    <input type="email" id="reg-email" required placeholder="Enter your email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-password">Password</label>
+                                    <input type="password" id="reg-password" required placeholder="Minimum 6 characters">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-role">Account Type</label>
+                                    <select id="reg-role" required>
+                                        <option value="common">Common User (Lifestyle Assessment)</option>
+                                        <option value="industrial">Industrial Owner (Regulatory CCTS Compliance)</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD VIEW -->
+        <section id="view-dashboard" class="tab-view" style="display: none;">
+            <!-- COMMON USER DASHBOARD -->
+            <div id="common-dashboard-view" style="display: none;">
+                <!-- Inspiring Dashboard Header -->
+                <div class="dashboard-welcome-header">
+                    <div class="welcome-left">
+                        <h1 class="welcome-title animate-gradient-text" id="dashboard-user-welcome">Welcome to your Green Hub</h1>
+                        <p class="welcome-subtitle">Every daily action is a vote for the environment. View your audited metrics below.</p>
+                    </div>
+                    <!-- Dynamic motivational quote card or stats widget -->
+                    <div class="glass-card motivational-card">
+                        <span class="motivational-icon">💡</span>
+                        <div class="motivational-content">
+                            <span class="motivational-label">Daily Ecological Focus</span>
+                            <p class="motivational-quote" id="motivational-quote-text">"The greatest threat to our planet is the belief that someone else will save it." – Robert Swan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-Card Metric Row -->
+                <div class="metrics-row common-only" id="common-metrics-row">
+                    <!-- Metric 1: Annualized Baseline -->
+                    <div class="glass-card metric-card">
+                        <div class="metric-icon-box transport">📉</div>
+                        <div class="metric-info">
+                            <span class="metric-label">Annual Baseline</span>
+                            <h3 class="metric-value" id="metric-baseline">0.0 kg</h3>
+                            <span class="metric-sub">B2C Footprint / Yr</span>
+                        </div>
+                    </div>
+                    <!-- Metric 2: Monthly Progress -->
+                    <div class="glass-card metric-card">
+                        <div class="metric-icon-box food">🌱</div>
+                        <div class="metric-info">
+                            <span class="metric-label">Monthly Progress</span>
+                            <h3 class="metric-value" id="metric-monthly">0.0 kg</h3>
+                            <span class="metric-sub">CO₂ Offset This Month</span>
+                        </div>
+                    </div>
+                    <!-- Metric 3: Total Offset Logged -->
+                    <div class="glass-card metric-card">
+                        <div class="metric-icon-box energy">🍃</div>
+                        <div class="metric-info">
+                            <span class="metric-label">Total Offset Logged</span>
+                            <h3 class="metric-value" id="metric-total-offset">0.0 kg</h3>
+                            <span class="metric-sub">Cumulative CO₂ Saved</span>
+                        </div>
+                    </div>
+                    <!-- Metric 4: Milestones -->
+                    <div class="glass-card metric-card">
+                        <div class="metric-icon-box points">🏆</div>
+                        <div class="metric-info">
+                            <span class="metric-label">Milestones</span>
+                            <h3 class="metric-value" id="metric-milestones">0</h3>
+                            <span class="metric-sub">1 per 50 kg saved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Action Cards Row -->
+                <div class="quick-actions-row common-only" id="common-quick-actions" style="margin-top: 1.5rem;">
+                    <div class="glass-card quick-action-card" onclick="switchTab('calculator')">
+                        <span class="qa-icon">🧮</span>
+                        <div class="qa-info">
+                            <h4 id="qa-calc-title">Update Assessment</h4>
+                            <p id="qa-calc-desc">Retake your lifestyle calculator to adjust your baseline.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card quick-action-card" onclick="switchTab('ai-coach')">
+                        <span class="qa-icon">🤖</span>
+                        <div class="qa-info">
+                            <h4>Ask AI Coach</h4>
+                            <p>Get personalized tips and answers about carbon offsets.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card quick-action-card" onclick="switchTab('blogs')">
+                        <span class="qa-icon">💬</span>
+                        <div class="qa-info">
+                            <h4>Read Green Logs</h4>
+                            <p>Join the conversation in the community blogging feed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landing Split Panel (Dial Gauge on left, welcome content on right) -->
+                <div class="dashboard-hero-split" style="margin-top: 1.5rem;">
+                    <!-- Left Panel: Dial Gauge Card -->
+                    <div class="glass-card gauge-card-left">
+                        <h3>Your Carbon Footprint</h3>
+                        <div class="badge-status-container">
+                            <span class="badge" id="gauge-status-txt">NO ASSESSMENT</span>
+                        </div>
+                        
+                        <!-- Circular Dial Container -->
+                        <div class="gauge-dial-outer">
+                            <div class="gauge-dial-inner">
+                                <div class="gauge-dial-content">
+                                    <span class="gauge-number" id="gauge-footprint-value">--</span>
+                                    <span class="gauge-unit" id="gauge-footprint-unit">KG CO₂ / YEAR</span>
+                                </div>
+                            </div>
+                            <div class="dial-pulse pulse-1"></div>
+                            <div class="dial-pulse pulse-2"></div>
+                        </div>
+
+                        <p class="gauge-caption">Complete the carbon assessment to see your footprint score and custom breakdowns.</p>
+                        <button class="btn btn-primary btn-block" onclick="switchTab('calculator')" id="btn-start-assessment">
+                            <span class="btn-icon">▶</span> Start Assessment
+                        </button>
+                    </div>
+
+                    <!-- Right Panel: Welcome Info -->
+                    <div class="glass-card info-card-right">
+                        <div id="b2c-welcome-deck">
+                            <h2>Carbon Intelligence Dashboard</h2>
+                            <p class="hero-description">
+                                Welcome! Our platform coordinates environmental data auditing to analyze ecological resources consumption. 
+                                <strong>Why spread carbon awareness?</strong> Greenhouse gases are warming our atmosphere at unsustainable rates. 
+                                Every individual decision (diet, transit, heating) affects regional fossil-grid loads. By tracking emission intensities, 
+                                we can implement targeted, graded mitigations to combat global warming.
+                            </p>
+                            <p class="hero-subtext"><strong>How you can help build our active green community:</strong></p>
+                            
+                            <div class="hero-features-grid">
+                                <div class="feature-block">
+                                    <span class="feature-icon">📝</span>
+                                    <h4>Interactive Calculator</h4>
+                                    <p>Input biological parameters and lifestyle selections to benchmark your annual footprint under advanced conversion models.</p>
+                                </div>
+                                <div class="feature-block">
+                                    <span class="feature-icon">💬</span>
+                                    <h4>Spread Awareness via Blogs</h4>
+                                    <p>Read community logs, comment (+5 pts) to share tips, and publish admin-approved articles (+100 pts) to spread awareness.</p>
+                                </div>
+                                <div class="feature-block">
+                                    <span class="feature-icon">🏆</span>
+                                    <h4>Gamified Competition</h4>
+                                    <p>Complete calculator assessments and read library articles to earn points, and climb the Global Eco Leaderboard.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personalized Actions Card Deck -->
+                <div class="personalized-actions-section common-only" id="common-personalized-actions" style="margin-top: 2rem;">
+                    <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem;">Personalized Actions for You</h3>
+                    <p class="text-muted" style="margin-bottom: 1.5rem; font-size: 0.95rem;">Log carbon-offsetting actions to decrease your footprint and earn eco points.</p>
+                    
+                    <div class="actions-grid">
+                        <!-- Transport Card -->
+                        <div class="glass-card action-log-card transport">
+                            <div class="action-badge">Transport</div>
+                            <div class="action-icon">🚆</div>
+                            <div class="action-body">
+                                <h4>Metro Commute</h4>
+                                <p>Use local rail/metro systems instead of driving petrol/diesel vehicles.</p>
+                                <div class="action-savings-row">
+                                    <span class="co2-save">🍃 4.2 kg CO₂e</span>
+                                    <span class="pts-gain">⚡ +15 pts</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block" onclick="handleLogAction('transport', 'Metro Commute', 4.2, 15)">Log Action</button>
+                        </div>
+
+                        <!-- Food Card -->
+                        <div class="glass-card action-log-card food">
+                            <div class="action-badge">Food</div>
+                            <div class="action-icon">🥗</div>
+                            <div class="action-body">
+                                <h4>Vegetarian Dinner</h4>
+                                <p>Choose plant-based proteins to offset heavy meat greenhouse impact.</p>
+                                <div class="action-savings-row">
+                                    <span class="co2-save">🍃 1.8 kg CO₂e</span>
+                                    <span class="pts-gain">⚡ +5 pts</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block" onclick="handleLogAction('food', 'Vegetarian Dinner', 1.8, 5)">Log Action</button>
+                        </div>
+
+                        <!-- Energy Card -->
+                        <div class="glass-card action-log-card energy">
+                            <div class="action-badge">Energy</div>
+                            <div class="action-icon">💡</div>
+                            <div class="action-body">
+                                <h4>HVAC Adjustment</h4>
+                                <p>Turn thermostat up 2°C or adjust heating loops to optimize home load.</p>
+                                <div class="action-savings-row">
+                                    <span class="co2-save">🍃 2.5 kg CO₂e</span>
+                                    <span class="pts-gain">⚡ +10 pts</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block" onclick="handleLogAction('energy', 'HVAC Adjustment', 2.5, 10)">Log Action</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B2C Analytics Charts & Mitigation (Only visible if taken assessment) -->
+                <div class="dashboard-grid" style="margin-top: 2rem;">
+                    <div class="dashboard-main-col">
+                        <div class="glass-card chart-container-card" id="analytics-charts-card" style="display: none;">
+                            <h3>Carbon Footprint Analytics</h3>
+                            <div class="chart-flex" id="charts-wrapper">
+                                <div class="chart-box">
+                                    <canvas id="chartComparative"></canvas>
+                                </div>
+                                <div class="chart-box">
+                                    <canvas id="chartBreakdown"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Mitigation Strategy Engine Card -->
+                        <div class="glass-card recommendations-card" id="mitigation-panel" style="display: none; margin-top: 1.5rem;">
+                            <div class="mitigation-header">
+                                <h3>Tiered Decarbonization Strategy</h3>
+                                <span class="badge" id="highest-emitter-badge">Highest Category: Transport</span>
+                            </div>
+                            <p class="mitigation-subtitle">Our dynamic recommendations engine parsed your footprint inputs. Below are easy, medium, and hard changes you can make to mitigate emissions:</p>
+                            
+                            <div class="strategy-cards-grid">
+                                <div class="strategy-card easy">
+                                    <div class="strategy-lvl">EASY ACTION</div>
+                                    <p id="rec-easy-txt">Loading recommendation...</p>
+                                </div>
+                                <div class="strategy-card medium">
+                                    <div class="strategy-lvl">MEDIUM ACTION</div>
+                                    <p id="rec-medium-txt">Loading recommendation...</p>
+                                </div>
+                                <div class="strategy-card hard">
+                                    <div class="strategy-lvl">HARD ACTION</div>
+                                    <p id="rec-hard-txt">Loading recommendation...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INDUSTRIAL OWNER DASHBOARD -->
+            <div id="industrial-dashboard-view" style="display: none;">
+                <div class="dashboard-welcome-header">
+                    <div class="welcome-left">
+                        <h1 class="welcome-title animate-gradient-text">Industrial Compliance & Resource Management</h1>
+                        <p class="welcome-subtitle">Audit direct boiler combustion, electricity, and heavy machinery output against Indian CCTS caps.</p>
+                    </div>
+                </div>
+
+                <div class="industrial-stats-grid">
+                    <div class="glass-card metric-card">
+                        <div class="metric-icon-box cement">🏭</div>
+                        <div class="metric-info">
+                            <span class="metric-label">Emission Intensity</span>
+                            <h3 class="metric-value" id="ind-dash-intensity">--</h3>
+                            <span class="metric-sub" id="ind-dash-intensity-unit">tCO₂e / unit output</span>
+                        </div>
+                    </div>
+                    <div class="glass-card metric-card">
+                        <div class="metric-icon-box steel">🛡️</div>
+                        <div class="metric-info">
+                            <span class="metric-label">Compliance Status</span>
+                            <h3 class="metric-value" id="ind-dash-status">--</h3>
+                            <span class="metric-sub" id="ind-dash-cap">BEE Regulatory Cap: --</span>
+                        </div>
+                    </div>
+                    <div class="glass-card metric-card">
+                        <div class="metric-icon-box energy">📜</div>
+                        <div class="metric-info">
+                            <span class="metric-label">CCTS Credits Earned</span>
+                            <h3 class="metric-value" id="ind-dash-credits">0.00</h3>
+                            <span class="metric-sub">Tradable Carbon Certificates</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scope Emissions breakdown -->
+                <div class="industrial-details-grid">
+                    <div class="glass-card scope-breakdown-card" style="padding: 1.5rem;">
+                        <h3>Carbon Intensity & Compliance Audit</h3>
+                        <div class="scope-flex" style="display: flex; justify-content: space-around; margin: 1.5rem 0;">
+                            <div class="scope-box text-center">
+                                <span class="scope-title" style="font-weight: 500; font-size: 0.9rem; color: var(--text-secondary);">Scope 1 (Direct Boiler / Fuel)</span>
+                                <h4 id="ind-dash-scope1" style="font-size: 1.75rem; color: var(--warning-gold); font-weight: 700; margin-top: 0.5rem;">0.00 t</h4>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary);">Direct Combustions</span>
+                            </div>
+                            <div class="scope-box text-center">
+                                <span class="scope-title" style="font-weight: 500; font-size: 0.9rem; color: var(--text-secondary);">Scope 2 (Indirect Grid Electricity)</span>
+                                <h4 id="ind-dash-scope2" style="font-size: 1.75rem; color: var(--mint-green); font-weight: 700; margin-top: 0.5rem;">0.00 t</h4>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary);">Purchased Grid Power</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card ind-quick-actions" style="padding: 1.5rem;">
+                        <h3>Industrial Actions</h3>
+                        <div class="ind-qa-list" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                            <button class="btn btn-outline btn-block text-left" onclick="switchTab('calculator')" id="btn-retake-compliance">
+                                🧮 Retake Compliance Audit
+                            </button>
+                            <button class="btn btn-outline btn-block text-left" onclick="switchTab('articles')">
+                                📖 Browse Policy Library
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graded approaches directly on Dashboard for B2B -->
+                <div class="glass-card recommendations-card" id="ind-mitigation-card" style="margin-top: 1.5rem; display: none;">
+                    <div class="mitigation-header">
+                        <h3>Indian Industrial BEE Compliance Pathways</h3>
+                    </div>
+                    <p class="mitigation-subtitle" style="margin-bottom: 1.5rem;">Based on your audited production parameters, here are three progressive decarbonization strategies for your facility:</p>
+                    <div class="strategy-cards-grid">
+                        <div class="strategy-card easy" style="border-left: 3px solid #10b981; background: rgba(16, 185, 129, 0.02); padding: 1.25rem;">
+                            <div class="strategy-lvl" style="color: #10b981; font-weight: 700; font-size: 0.75rem; text-transform: uppercase;">Easy Step</div>
+                            <p id="ind-rec-easy" style="font-size: 0.85rem; color: var(--text-primary); margin-top: 0.5rem;"></p>
+                        </div>
+                        <div class="strategy-card medium" style="border-left: 3px solid #f59e0b; background: rgba(245, 158, 11, 0.02); padding: 1.25rem;">
+                            <div class="strategy-lvl" style="color: #f59e0b; font-weight: 700; font-size: 0.75rem; text-transform: uppercase;">Medium Upgrade</div>
+                            <p id="ind-rec-medium" style="font-size: 0.85rem; color: var(--text-primary); margin-top: 0.5rem;"></p>
+                        </div>
+                        <div class="strategy-card hard" style="border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.02); padding: 1.25rem;">
+                            <div class="strategy-lvl" style="color: #ef4444; font-weight: 700; font-size: 0.75rem; text-transform: uppercase;">Hard Deployment</div>
+                            <p id="ind-rec-hard" style="font-size: 0.85rem; color: var(--text-primary); margin-top: 0.5rem;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULATOR VIEW -->
+        <section id="view-calculator" class="tab-view" style="display: none;">
+            <div class="calculator-container">
+                <!-- B2C LIFESTYLE CALCULATOR -->
+                <div id="calc-b2c-wrapper" style="display: none;">
+                    <div class="glass-card calc-card">
+                        <!-- Progress Steps Indicators -->
+                        <div class="calc-steps-indicator">
+                            <span class="indicator-step active" id="step-ind-1">1. Profile & Diet</span>
+                            <span class="indicator-step" id="step-ind-2">2. Transit</span>
+                            <span class="indicator-step" id="step-ind-3">3. Home Energy</span>
+                        </div>
+
+                        <form id="form-calc-b2c" onsubmit="submitB2C(event)">
+                            <!-- Step 1: Diet & Profile -->
+                            <div class="calc-step-panel active" id="b2c-step-1">
+                                <div class="calc-header-step">
+                                    <h3>Personal Profile & Dietary Habits</h3>
+                                    <p>Your body composition, sex, and dietary intake form the baseline parameters of biological resource consumption.</p>
+                                </div>
+
+                                <div class="step-inputs">
+                                    <!-- Biological Sex -->
+                                    <div class="form-group-custom">
+                                        <label class="group-label">Biological Sex</label>
+                                        <div class="card-selector-grid cols-2">
+                                            <div class="selector-card active" onclick="selectCard('sex', 'female', this)">
+                                                <div class="card-icon">👩</div>
+                                                <span class="card-title">Female</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('sex', 'male', this)">
+                                                <div class="card-icon">👨</div>
+                                                <span class="card-title">Male</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Body Composition -->
+                                    <div class="form-group-custom" style="margin-top: 1.5rem;">
+                                        <label class="group-label">Body Composition</label>
+                                        <div class="card-selector-grid cols-4">
+                                            <div class="selector-card active" onclick="selectCard('body_composition', 'normal', this)">
+                                                <span class="card-title">Normal</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('body_composition', 'underweight', this)">
+                                                <span class="card-title">Underweight</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('body_composition', 'overweight', this)">
+                                                <span class="card-title">Overweight</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('body_composition', 'obese', this)">
+                                                <span class="card-title">Obese</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Dietary Preference -->
+                                    <div class="form-group-custom" style="margin-top: 1.5rem;">
+                                        <label class="group-label">Dietary Preference</label>
+                                        <div class="card-selector-grid cols-2">
+                                            <div class="selector-card active" onclick="selectCard('dietary_preference', 'vegan', this)">
+                                                <div class="card-icon">🌱</div>
+                                                <span class="card-title">Vegan</span>
+                                                <span class="card-desc">100% plant-based diet. Lowest carbon footprint.</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('dietary_preference', 'vegetarian', this)">
+                                                <div class="card-icon">🥚</div>
+                                                <span class="card-title">Vegetarian</span>
+                                                <span class="card-desc">No meat, but includes dairy, eggs, and plants.</span>
+                                            </div>
+                                            <div class="selector-card" style="grid-column: span 2;" onclick="selectCard('dietary_preference', 'omnivore', this)">
+                                                <div class="card-icon">🍗</div>
+                                                <span class="card-title">Omnivore</span>
+                                                <span class="card-desc">Standard mixed diet containing poultry, fish, and meats.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step-footer" style="margin-top: 2rem;">
+                                    <button type="button" class="btn btn-primary" onclick="nextB2CStep(2)">Next Step: Transit &rarr;</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Transport -->
+                            <div class="calc-step-panel" id="b2c-step-2" style="display: none;">
+                                <div class="calc-header-step">
+                                    <h3>Transportation & Commuting</h3>
+                                    <p>Your primary commuting choices represent a significant proportion of your total global greenhouse gas impact.</p>
+                                </div>
+
+                                <div class="step-inputs">
+                                    <!-- Primary Transit Mode -->
+                                    <div class="form-group-custom">
+                                        <label class="group-label">Primary Transit Mode</label>
+                                        <div class="card-selector-grid cols-3">
+                                            <div class="selector-card" onclick="selectCard('transit_mode', 'walk_bicycle', this); toggleFuelRow(false)">
+                                                <div class="card-icon">🚲</div>
+                                                <span class="card-title">Walk / Bicycle</span>
+                                                <span class="card-desc">Pure active transit. Zero emission commuting.</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('transit_mode', 'public_transit', this); toggleFuelRow(false)">
+                                                <div class="card-icon">🚌</div>
+                                                <span class="card-title">Public Transit</span>
+                                                <span class="card-desc">Buses, subways, and passenger trains.</span>
+                                            </div>
+                                            <div class="selector-card active" onclick="selectCard('transit_mode', 'private_vehicle', this); toggleFuelRow(true)">
+                                                <div class="card-icon">🚗</div>
+                                                <span class="card-title">Private Vehicle</span>
+                                                <span class="card-desc">Personal automobiles. Highest emission intensity.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Vehicle Engine / Fuel Type (Visible only for private vehicles) -->
+                                    <div class="form-group-custom" id="fuel-type-container" style="margin-top: 1.5rem;">
+                                        <label class="group-label">Vehicle Engine / Fuel Type</label>
+                                        <div class="card-selector-grid cols-5">
+                                            <div class="selector-card active" onclick="selectCard('fuel_type', 'petrol', this)">
+                                                <span class="card-title">Petrol</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('fuel_type', 'diesel', this)">
+                                                <span class="card-title">Diesel</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('fuel_type', 'hybrid', this)">
+                                                <span class="card-title">Hybrid</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('fuel_type', 'lpg', this)">
+                                                <span class="card-title">LPG</span>
+                                            </div>
+                                            <div class="selector-card" onclick="selectCard('fuel_type', 'electric', this)">
+                                                <span class="card-title">Electric</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Monthly Distance driven slider -->
+                                    <div class="form-group-custom" id="distance-slider-container" style="margin-top: 1.5rem;">
+                                        <div class="slider-header-label">
+                                            <label class="group-label">Monthly Distance Driven (Km)</label>
+                                            <span class="slider-value-display" id="distance-val-display">2,000 km</span>
+                                        </div>
+                                        <input type="range" class="custom-slider" id="b2c-distance-range" min="0" max="10000" step="100" value="2000" oninput="updateSliderDisplay(this.value)">
+                                        <div class="slider-ticks">
+                                            <span>0 km (Unused/City)</span>
+                                            <span>5,000 km (Commuter)</span>
+                                            <span>10,000 km (Road Warrior)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-footer" style="margin-top: 2rem;">
+                                    <button type="button" class="btn btn-outline" onclick="nextB2CStep(1)">&larr; Back</button>
+                                    <button type="button" class="btn btn-primary" onclick="nextB2CStep(3)">Next Step: Energy &rarr;</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Energy -->
+                            <div class="calc-step-panel" id="b2c-step-3" style="display: none;">
+                                <div class="calc-header-step">
+                                    <h3>Home Grid Energy Consumption</h3>
+                                    <p>Your residential lighting and heating grids represent the final slice of personal emissions auditing.</p>
+                                </div>
+
+                                <div class="step-inputs">
+                                    <div class="form-group">
+                                        <label for="b2c-kwh">Monthly Home Electricity Consumed (kWh)</label>
+                                        <input type="number" id="b2c-kwh" value="0" min="0" placeholder="e.g. 250">
+                                        <span class="field-hint">Multiplied by India's national grid intensity factor (0.82 kg CO2e/kWh).</span>
+                                    </div>
+                                </div>
+
+                                <div class="step-footer" style="margin-top: 2rem;">
+                                    <button type="button" class="btn btn-outline" onclick="nextB2CStep(2)">&larr; Back</button>
+                                    <button type="submit" class="btn btn-success">Submit Assessment & Earn Points</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- B2B INDUSTRIAL CALCULATOR -->
+                <div id="calc-b2b-wrapper" style="display: none;">
+                    <div class="glass-card calc-card">
+                        <div class="calc-header">
+                            <h2>B2B India-Centric Industrial compliance Calculator</h2>
+                            <p>Computes Scope 1 & Scope 2 emission intensity following BEE & CCTS norms to check sector cap compliance and trade credits.</p>
+                        </div>
+
+                        <form id="form-calc-b2b" onsubmit="submitB2B(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="b2b-company">Company Name</label>
+                                    <input type="text" id="b2b-company" required placeholder="e.g. Reliance Steel Plant">
+                                </div>
+                                <div class="form-group">
+                                    <label for="b2b-sector">Industrial Sector</label>
+                                    <select id="b2b-sector" required>
+                                        <option value="steel">Steel (Regulatory Cap: 2.1 tCO2e/tonne)</option>
+                                        <option value="cement">Cement (Regulatory Cap: 0.65 tCO2e/tonne)</option>
+                                        <option value="power">Power Generation (Regulatory Cap: 0.8 tCO2e/MWh)</option>
+                                        <option value="other">Other / Standard (Regulatory Cap: 1.5 tCO2e/tonne)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="section-divider">Scope 1 (Direct Emissions in Tonnes CO2e)</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="b2b-coal">Annual Coal Consumed (Metric Tonnes)</label>
+                                    <input type="number" step="0.1" id="b2b-coal" value="0.0" min="0">
+                                    <span class="field-hint">Boilers/combustion (2.42 tCO2e/tonne coal).</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="b2b-diesel">Annual Diesel consumed (Liters)</label>
+                                    <input type="number" step="0.1" id="b2b-diesel" value="0.0" min="0">
+                                    <span class="field-hint">Generators/heavy machinery (0.00268 tCO2e/liter).</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="b2b-process">Direct Chemical Process Emissions (tCO2e)</label>
+                                    <input type="number" step="0.1" id="b2b-process" value="0.0" min="0">
+                                    <span class="field-hint">Direct smelting or calcination process leakage.</span>
+                                </div>
+                            </div>
+
+                            <div class="section-divider">Scope 2 (Indirect Grid Electricity in Tonnes CO2e)</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="b2b-grid">Annual Heavy Machinery Electricity Consumed (kWh)</label>
+                                    <input type="number" step="1" id="b2b-grid" value="0" min="0">
+                                    <span class="field-hint">India coal-grid conversion (0.00082 tCO2e/kWh).</span>
+                                </div>
+                            </div>
+
+                            <div class="section-divider">Industrial Output</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="b2b-output">Annual Production Output Volume (Metric Tonnes)</label>
+                                    <input type="number" step="0.1" id="b2b-output" required placeholder="e.g. 5000.0" min="0.1">
+                                    <span class="field-hint">Total volume of cement, steel, or output generated.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-submit-row">
+                                <button type="submit" class="btn btn-success">Verify Compliance & Calculate Credits</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- CALCULATOR RESULTS / SOLUTIONS VIEW (Shown if taken once) -->
+                <div id="calc-results-container" style="display: none; margin-top: 1rem; width: 100%;">
+                    <!-- B2C Solutions View -->
+                    <div id="calc-b2c-results" style="display: none; width: 100%;">
+                        <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem; text-align: center;">
+                            <h2 class="animate-gradient-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">Calculation Complete</h2>
+                            <p class="text-muted" style="font-size: 0.95rem;">You have already submitted your lifestyle assessment. Review your carbon metrics and personalized offset solutions below.</p>
+                        </div>
+                        
+                        <!-- Target for copying charts and mitigation from Dashboard -->
+                        <div id="calc-b2c-shared-target" style="width: 100%;"></div>
+                    </div>
+
+                    <!-- B2B Solutions View -->
+                    <div id="calc-b2b-results" style="display: none; width: 100%;">
+                        <div class="glass-card" style="padding: 2rem; margin-bottom: 2rem; text-align: center;">
+                            <h2 class="animate-gradient-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">Compliance Audit Complete</h2>
+                            <p class="text-muted" style="font-size: 0.95rem;">Your facility has already submitted its resource compliance audit. Review your Scope 1/2 intensities and CCTS compliance pathways below.</p>
+                        </div>
+                        
+                        <!-- Target for copying B2B stats and mitigation from Dashboard -->
+                        <div id="calc-b2b-shared-target" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY BLOGS VIEW -->
+        <section id="view-blogs" class="tab-view" style="display: none;">
+            <div class="blogs-grid">
+                <!-- Blogs Feed -->
+                <div class="blogs-feed-col">
+                    <div class="feed-header">
+                        <h2>Community Blogging Portal</h2>
+                        <p>Read green logs from experts. Earn <strong>+5 Points</strong> for leaving meaningful comments!</p>
+                    </div>
+                    
+                    <div id="blogs-feed-list" class="feed-list">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Create Blog Sidebar -->
+                <div class="blogs-sidebar-col">
+                    <div class="glass-card post-blog-card">
+                        <h3>Publish a Green Log</h3>
+                        <p class="text-muted">Draft a post using Markdown syntax. To maintain high platform standards, all submissions remain <strong>Pending Admin Review</strong> before going live and awarding you <strong>+100 Points</strong>.</p>
+                        
+                        <form id="form-create-blog" onsubmit="submitBlog(event)">
+                            <div class="form-group">
+                                <label for="blog-title">Log Title</label>
+                                <input type="text" id="blog-title" required placeholder="e.g. 5 Tips to Switch to a Solar-Powered Household">
+                            </div>
+                            <div class="form-group">
+                                <label for="blog-content">Log Content (Markdown supported)</label>
+                                <textarea id="blog-content" required rows="10" placeholder="## Intro&#10;Write your post body here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Submit Draft for Moderation</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AWARENESS ARTICLES VIEW -->
+        <section id="view-articles" class="tab-view" style="display: none;">
+            <div class="articles-header">
+                <h2>Awareness & Knowledge Base</h2>
+                <p>Read an entire awareness article to boost your carbon footprint intelligence and earn <strong>+10 Points</strong> per article. <em>Timer protection enabled to verify engagement.</em></p>
+            </div>
+
+            <div class="articles-cards-grid" id="articles-deck">
+                <!-- Dynamically loaded articles -->
+            </div>
+        </section>
+
+        <!-- DEDICATED LEADERBOARD VIEW -->
+        <section id="view-leaderboard" class="tab-view" style="display: none;">
+            <div class="leaderboard-page-container">
+                <div class="leaderboard-page-header">
+                    <h2 class="animate-gradient-text text-center">Global Eco Leaderboard</h2>
+                    <p class="text-center text-muted">Celebrating top environmental champions leading the de-carbonization race.</p>
+                </div>
+                
+                <!-- Podium layout for top 3 -->
+                <div class="podium-deck" id="leaderboard-podium">
+                    <!-- Dynamically populated in JavaScript -->
+                </div>
+
+                <!-- Leaderboard Table for remaining ranks -->
+                <div class="glass-card table-card" style="margin-top: 2.5rem; overflow: hidden;">
+                    <div style="padding: 1.5rem 2rem; border-bottom: 1px solid var(--glass-border);">
+                        <h3 style="font-size: 1.25rem; font-weight: 600;">Standings Ledger</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.25rem;">Ranks 4 and below</p>
+                    </div>
+                    <div class="table-container" style="padding: 0;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th style="padding-left: 2rem; width: 100px;">Rank</th>
+                                    <th>Champion</th>
+                                    <th>Account Role</th>
+                                    <th style="padding-right: 2rem; text-align: right;">Total Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-table-body">
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI COACH CHAT VIEW -->
+        <section id="view-ai-coach" class="tab-view" style="display: none;">
+            <div class="ai-coach-container glass-card">
+                <div class="coach-header">
+                    <div class="coach-avatar">🤖</div>
+                    <div class="coach-title-block">
+                        <h2>Personal AI Sustainability Coach</h2>
+                        <span class="coach-badge">Powered by Gemini</span>
+                    </div>
+                </div>
+                
+                <div class="chat-display-area" id="chat-messages">
+                    <div class="chat-bubble coach">
+                        <p>Hello! I am your AI Sustainability Coach. How can I help you reduce your carbon footprint or understand green concepts today?</p>
+                    </div>
+                </div>
+
+                <div class="starter-chips-container" id="coach-starter-chips">
+                    <button class="starter-chip" onclick="sendStarterMessage('How can I reduce my transportation carbon footprint?')">🚗 Lower Transit Footprint</button>
+                    <button class="starter-chip" onclick="sendStarterMessage('Explain India CCTS and regulatory carbon caps')">🏭 What is BEE & CCTS?</button>
+                    <button class="starter-chip" onclick="sendStarterMessage('What are some easy green energy changes for my home?')">💡 Home Energy Savings</button>
+                </div>
+
+                <form class="chat-input-row" id="coach-chat-form" onsubmit="handleSendCoachMessage(event)">
+                    <input type="text" id="coach-message-input" placeholder="Ask your coach anything about sustainability..." autocomplete="off">
+                    <button type="submit" class="btn btn-primary" id="btn-send-message">Send 🚀</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ADMIN PANEL VIEW -->
+        <section id="view-admin-panel" class="tab-view" style="display: none;">
+            <div class="admin-header">
+                <h2>Admin Control Center & Moderation</h2>
+                <p>Verify user blogging submissions, manage platform activity, and audit scores ledger.</p>
+            </div>
+
+            <!-- Moderation Section -->
+            <div class="glass-card admin-mod-card">
+                <h3>Pending Blog Queue</h3>
+                <p class="text-muted">Review drafts submitted by users. Approving a blog makes it public and credits +100 points to the author's points ledger. Rejecting flags it as deleted.</p>
+                
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Author</th>
+                                <th>Title</th>
+                                <th>Snippet</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-pending-table-body">
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">No pending blogs in the verification queue.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+        </div> <!-- Close app-main-content -->
+    </div> <!-- Close app-layout -->
+
+    <!-- Modal for reading awareness article -->
+    <div id="article-reader-modal" class="modal-overlay" style="display: none;">
+        <div class="glass-card modal-card">
+            <div class="modal-header">
+                <h2 id="modal-article-title">Article Title</h2>
+                <button class="close-modal-btn" onclick="closeArticleModal()">×</button>
+            </div>
+            <div class="modal-body" id="modal-article-body">
+                Article content...
+            </div>
+            <div class="modal-footer">
+                <div class="timer-wrapper" id="timer-box">
+                    <div class="timer-progress-bar">
+                        <div class="timer-progress-fill" id="timer-progress-fill-element"></div>
+                    </div>
+                    <span class="timer-label" id="timer-label-text">Verifying engagement: 30s remaining</span>
+                </div>
+                <button class="btn btn-success" id="btn-claim-points" disabled onclick="claimArticlePoints()">Claim +10 Points</button>
+            </div> <!-- Close modal-footer -->
+        </div> <!-- Close modal-card -->
+    </div> <!-- Close article-reader-modal -->
+    <!-- Modal for Industrial Audit Results -->
+    <div id="b2b-result-modal" class="modal-overlay" style="display: none;">
+        <div class="glass-card modal-card B2B-result-card" style="max-width: 650px;">
+            <div class="modal-header">
+                <h2 id="b2b-result-title">Industrial Audit Complete</h2>
+                <button class="close-modal-btn" onclick="closeB2BResultModal()">×</button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem 0;">
+                <!-- Compliance Status Banner -->
+                <div id="b2b-modal-status-banner" class="compliance-banner">
+                    <span id="b2b-modal-status-title" style="font-weight: 800; font-size: 1.1rem; text-transform: uppercase;">Status Check</span>
+                    <p id="b2b-modal-status-desc" style="margin-top: 0.25rem; font-size: 0.95rem; font-weight: 500;"></p>
+                </div>
+                
+                <!-- Audit parameters and metrics -->
+                <div class="modal-metrics-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                    <div class="glass-card metric-info-box" style="padding: 1rem;">
+                        <span class="metric-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Emission Intensity</span>
+                        <h4 id="b2b-modal-intensity" style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-top: 0.25rem;">0.00</h4>
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">tCO₂e / tonne production</span>
+                    </div>
+                    <div class="glass-card metric-info-box" style="padding: 1rem;">
+                        <span class="metric-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Sector Target Cap</span>
+                        <h4 id="b2b-modal-cap" style="font-size: 1.5rem; font-weight: 800; color: var(--cyan-accent); margin-top: 0.25rem;">0.00</h4>
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Regulatory Limit</span>
+                    </div>
+                </div>
+
+                <div class="modal-metrics-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                    <div class="glass-card metric-info-box" style="padding: 1rem;">
+                        <span class="metric-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Total Scope 1 (Direct)</span>
+                        <h4 id="b2b-modal-scope1" style="font-size: 1.25rem; font-weight: 700; color: var(--warning-gold); margin-top: 0.25rem;">0.00</h4>
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Tonnes CO₂e</span>
+                    </div>
+                    <div class="glass-card metric-info-box" style="padding: 1rem;">
+                        <span class="metric-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Total Scope 2 (Indirect)</span>
+                        <h4 id="b2b-modal-scope2" style="font-size: 1.25rem; font-weight: 700; color: var(--mint-green); margin-top: 0.25rem;">0.00</h4>
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Tonnes CO₂e</span>
+                    </div>
+                </div>
+
+                <div class="glass-card metric-info-box" style="padding: 1.25rem; margin-top: 1rem; border-color: rgba(6, 182, 212, 0.15);">
+                    <span class="metric-label" style="font-size: 0.75rem; color: var(--cyan-accent); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">CCTS Carbon Certificates</span>
+                    <h3 id="b2b-modal-credits-desc" style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-top: 0.25rem;">0.00 Credits Earned</h3>
+                </div>
+
+                <!-- Graded solutions list directly on modal -->
+                <div class="modal-solutions-section" style="margin-top: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; text-align: left;">Recommended Solutions & Graded Approaches:</h3>
+                    <div class="strategy-cards-grid text-left" style="display: grid; gap: 0.75rem;">
+                        <div class="strategy-card easy" style="padding: 0.75rem 1rem; border-left: 3px solid #10b981; background: rgba(16, 185, 129, 0.03); text-align: left;">
+                            <div class="strategy-lvl" style="font-size: 0.7rem; font-weight: 700; color: #10b981;">EASY COMPLIANCE STEP</div>
+                            <p id="b2b-modal-rec-easy" style="font-size: 0.85rem; color: var(--text-primary); margin-top: 0.15rem;"></p>
+                        </div>
+                        <div class="strategy-card medium" style="padding: 0.75rem 1rem; border-left: 3px solid #f59e0b; background: rgba(245, 158, 11, 0.03); text-align: left;">
+                            <div class="strategy-lvl" style="font-size: 0.7rem; font-weight: 700; color: #f59e0b;">MEDIUM EFFICIENCY UPGRADE</div>
+                            <p id="b2b-modal-rec-medium" style="font-size: 0.85rem; color: var(--text-primary); margin-top: 0.15rem;"></p>
+                        </div>
+                        <div class="strategy-card hard" style="padding: 0.75rem 1rem; border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.03); text-align: left;">
+                            <div class="strategy-lvl" style="font-size: 0.7rem; font-weight: 700; color: #ef4444;">HARD DECARBONIZATION DEPLOYMENT</div>
+                            <p id="b2b-modal-rec-hard" style="font-size: 0.85rem; color: var(--text-primary); margin-top: 0.15rem;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="margin-top: 1rem; justify-content: flex-end;">
+                <button class="btn btn-primary" onclick="closeB2BResultModal()">Acknowledge & Go to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gamified Tree Transition Overlay -->
+    <div id="login-tree-overlay" class="tree-overlay" style="display: none;">
+        <div class="tree-transition-card glass-card">
+            <div class="tree-container">
+                <!-- SVG Tree -->
+                <svg viewBox="0 0 400 400" id="transition-tree-svg" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Trunk and branches -->
+                    <path d="M 200,380 Q 200,300 200,240 T 180,180" stroke="#5c3a21" stroke-width="12" fill="none" stroke-linecap="round" />
+                    <path d="M 200,280 Q 160,250 140,210" stroke="#5c3a21" stroke-width="8" fill="none" stroke-linecap="round" />
+                    <path d="M 200,260 Q 240,230 260,190" stroke="#5c3a21" stroke-width="8" fill="none" stroke-linecap="round" />
+                    <path d="M 180,180 Q 150,140 120,130" stroke="#5c3a21" stroke-width="6" fill="none" stroke-linecap="round" />
+                    <path d="M 180,180 Q 210,130 240,110" stroke="#5c3a21" stroke-width="6" fill="none" stroke-linecap="round" />
+                    <path d="M 140,210 Q 110,190 90,160" stroke="#5c3a21" stroke-width="5" fill="none" stroke-linecap="round" />
+                    <path d="M 260,190 Q 290,170 310,140" stroke="#5c3a21" stroke-width="5" fill="none" stroke-linecap="round" />
+                    
+                    <!-- 15 Leaf Nodes -->
+                    <circle cx="120" cy="130" r="10" class="transition-leaf" id="leaf-1" fill="#10B981" />
+                    <circle cx="240" cy="110" r="10" class="transition-leaf" id="leaf-2" fill="#10B981" />
+                    <circle cx="90" cy="160" r="10" class="transition-leaf" id="leaf-3" fill="#10B981" />
+                    <circle cx="310" cy="140" r="10" class="transition-leaf" id="leaf-4" fill="#10B981" />
+                    <circle cx="140" cy="210" r="10" class="transition-leaf" id="leaf-5" fill="#10B981" />
+                    <circle cx="260" cy="190" r="10" class="transition-leaf" id="leaf-6" fill="#10B981" />
+                    <circle cx="180" cy="180" r="10" class="transition-leaf" id="leaf-7" fill="#10B981" />
+                    <circle cx="160" cy="150" r="10" class="transition-leaf" id="leaf-8" fill="#10B981" />
+                    <circle cx="210" cy="140" r="10" class="transition-leaf" id="leaf-9" fill="#10B981" />
+                    <circle cx="105" cy="145" r="10" class="transition-leaf" id="leaf-10" fill="#10B981" />
+                    <circle cx="225" cy="125" r="10" class="transition-leaf" id="leaf-11" fill="#10B981" />
+                    <circle cx="285" cy="165" r="10" class="transition-leaf" id="leaf-12" fill="#10B981" />
+                    <circle cx="150" cy="180" r="10" class="transition-leaf" id="leaf-13" fill="#10B981" />
+                    <circle cx="245" cy="170" r="10" class="transition-leaf" id="leaf-14" fill="#10B981" />
+                    <circle cx="190" cy="210" r="10" class="transition-leaf" id="leaf-15" fill="#10B981" />
+                </svg>
+                
+                <!-- CO2 Floating Area -->
+                <div class="co2-spawn-container" id="co2-spawn-area"></div>
+            </div>
+            
+            <div class="tree-transition-text">
+                <h2 class="animate-gradient-text" style="font-size: 1.5rem; text-align: center; margin-bottom: 0.5rem; font-weight: 800;">ECOLOGICAL INTEGRITY CHECK</h2>
+                <p id="tree-transition-status" class="text-center text-muted" style="font-size: 0.9rem; min-height: 24px;">Auditing global carbon footprints and grid emissions load...</p>
+                <div class="tree-warning-caption" id="tree-warning-msg" style="margin-top: 1rem; text-align: center; font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary);">
+                    Our collective resource consumption is stripping our planet's green canopy. Every daily choice releases CO₂ into the biosphere.
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button class="btn btn-outline" style="font-size: 0.8rem; padding: 0.4rem 1rem;" onclick="skipTreeIntro()">Skip Transition &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script loading -->
+    <script src="/static/js/app.js?v=3"></script>
+</body>
+</html>

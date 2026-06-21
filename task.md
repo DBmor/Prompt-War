@@ -1,0 +1,26 @@
+# Tasks - Professional Design, Personalized Actions Alignment & Infinite Retakes
+
+- [x] Professional Design & Font Adjustments
+    - [x] Import "Plus Jakarta Sans" and "Inter" from Google Fonts in `styles.css`
+    - [x] Update typography to use these modern sans-serif fonts
+    - [x] Add CSS filter rules in `styles.css` to make emojis monochromatic by default and glow emerald green on hover/interaction
+- [x] Animated Neural Network Background
+    - [x] Replace static plant SVG container with a `<canvas id="neural-canvas">` inside `index.html`
+    - [x] Implement high-performance canvas rendering loop in `app.js` with interconnected nodes, floating particles, and sea green/emerald/teal/blue color palettes
+    - [x] Add smooth mouse-parallax listener to canvas coordinates
+- [x] Personalized Actions Alignment Fix
+    - [x] Add closing `</div>` tag for `.dashboard-hero-split` before personalized actions in `index.html`
+    - [x] Add display block and full width overrides for `.personalized-actions-section` in `styles.css`
+- [x] Support Infinite Retakes & Brighter Neural Background
+    - [x] Make neural canvas background dots brighter and glowing in `app.js`
+    - [x] Simplify `checkCalculatorStatusAndRender` in `app.js` to always show the form for the user's role and hide the results container
+    - [x] Remove `returnElementsToDashboard` and its calls in `app.js`
+    - [x] Update dashboard assessment labels in `loadDashboardData()` for retake support
+- [x] Restore Login Tree transition Overlay Styles
+    - [x] Add missing CSS styles and animations for the gamified tree overlay (`.tree-overlay`, `.wither`, `.fall`, `.co2-bubble`, etc.) in `styles.css`
+    - [x] Fix unclosed `#article-reader-modal` wrapper tags in `index.html` to prevent nesting the login tree overlay under a hidden container
+- [ ] Manual Verification
+    - [ ] Verify neural canvas background dots are brighter and glow intensifies
+    - [ ] Verify clicking Calculator tab displays the questionnaire form every single time (for both Common and Industrial users)
+    - [ ] Verify submitting form redirects to dashboard and displays correct results/charts
+    - [ ] Verify login tree transition overlay shows, animates leaf fall/wither, floats CO2 bubbles, and redirects to dashboard on completion
