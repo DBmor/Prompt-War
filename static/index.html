@@ -16,6 +16,7 @@
 
     <!-- Layout Wrapper -->
     <div class="app-layout">
+        <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
         <!-- Vertical Left Sidebar (Hidden for guest) -->
         <aside class="app-sidebar" id="sidebar-container" style="display: none;">
             <div class="sidebar-brand">
@@ -69,6 +70,7 @@
             <!-- Top Header Bar (Hidden for guest) -->
             <header class="app-top-bar" id="top-bar-container" style="display: none;">
                 <div class="top-bar-left">
+                    <button id="hamburger-toggle" class="hamburger-btn" aria-label="Toggle navigation">☰</button>
                     <div class="search-box-container">
                         <span class="search-icon">🔍</span>
                         <input type="text" placeholder="Search eco tips, logs, articles..." class="search-input" id="search-input">

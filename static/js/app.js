@@ -48,6 +48,7 @@ let chartBreakdownRef = null;
 document.addEventListener('DOMContentLoaded', () => {
     checkSession();
     initNeuralBackground();
+    initMobileNav();
 });
 
 function initNeuralBackground() {
@@ -172,6 +173,63 @@ function initNeuralBackground() {
     }
     
     animate();
+}
+
+// Initialize mobile navigation handlers (hamburger, overlay, links)
+function initMobileNav() {
+    const sidebar = document.getElementById('sidebar-container');
+    const overlay = document.getElementById('sidebar-overlay');
+    const hamburger = document.getElementById('hamburger-toggle');
+
+    if (!sidebar || !overlay || !hamburger) return;
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        // prevent body scroll when sidebar open on mobile
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (sidebar.classList.contains('open')) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    // clicking overlay closes sidebar
+    overlay.addEventListener('click', () => {
+        closeSidebar();
+    });
+
+    // clicking a sidebar link should close sidebar on mobile only
+    sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                // small delay to allow any navigation action
+                setTimeout(closeSidebar, 120);
+            }
+        });
+    });
+
+    // ensure sidebar is closed if resizing to desktop
+    window.addEventListener('resize', () => {
+        if (!window.matchMedia('(max-width: 767px)').matches) {
+            closeSidebar();
+        }
+    });
 }
 
 // ==========================================================================

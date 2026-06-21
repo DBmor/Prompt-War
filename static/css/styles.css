@@ -3043,6 +3043,150 @@ body {
 }
 
 /* ==========================================================================
+   MOBILE-SPECIFIC ADJUSTMENTS (screens below 768px)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    /* Prevent horizontal scrolling on small devices */
+    html, body, .app-layout {
+        overflow-x: hidden;
+    }
+
+    /* Sidebar: hidden by default, slides in when `.open` is added */
+    .app-sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 280px;
+        padding: 1.5rem 1rem;
+        z-index: 1200;
+        box-shadow: 2px 0 18px rgba(0,0,0,0.6);
+        background: linear-gradient(180deg, #091316 0%, #0c1817 100%);
+        transition: transform 0.28s ease;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .app-sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Overlay behind sidebar when open (use by JS adding .open) */
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 1100;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .sidebar-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Main content should use full width when sidebar hidden */
+    .app-main-content {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+
+    .app-content {
+        padding: 1rem !important;
+        width: 100%;
+    }
+
+    /* Show a hamburger button in the top bar (JS should toggle .open on .app-sidebar) */
+    .hamburger-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        font-size: 1.25rem;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        border-radius: 8px;
+        margin-right: 0.5rem;
+    }
+
+    /* Hide desktop nav on mobile (already hidden but ensure) */
+    .app-nav {
+        display: none !important;
+    }
+
+    /* Metrics & Quick actions stack vertically */
+    .metrics-row {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .quick-actions-row {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    /* Dashboard hero becomes single column */
+    .dashboard-hero-split {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .gauge-card-left,
+    .info-card-right {
+        padding: 1rem !important;
+    }
+
+    /* Make cards flow vertically and avoid forcing horizontal space */
+    .metric-card,
+    .quick-action-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Charts stack vertically */
+    .chart-flex {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .chart-box {
+        min-height: 160px;
+    }
+
+    /* Ensure selectors and feature grids collapse to single column where needed */
+    .card-selector-grid.cols-2,
+    .card-selector-grid.cols-3,
+    .card-selector-grid.cols-4,
+    .hero-features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem;
+    }
+
+    /* Reduce large paddings for mobile comfort */
+    .app-header,
+    .app-top-bar {
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Make auth layout comfortable on small screens */
+    .auth-section {
+        padding: 1.25rem 0.75rem;
+    }
+
+    /* Avoid any accidental horizontal overflow caused by wide elements */
+    img, iframe, canvas {
+        max-width: 100%;
+        height: auto;
+    }
+}
+/* ==========================================================================
    RESPONSIVE MEDIA QUERIES - TABLET (768px and up)
    ========================================================================== */
 
