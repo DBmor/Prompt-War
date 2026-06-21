@@ -1,0 +1,311 @@
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES - TABLET (768px and up)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+    .app-header {
+        padding: 1rem 2rem;
+    }
+
+    .app-logo {
+        font-size: 1.4rem;
+    }
+
+    .user-menu {
+        gap: 1rem;
+    }
+
+    .points-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        gap: 0.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .auth-section {
+        padding: 3rem 1rem;
+    }
+
+    .auth-card {
+        padding: 2rem;
+    }
+
+    .app-content {
+        padding: 1.5rem 1.5rem;
+    }
+
+    .welcome-card {
+        padding: 1.75rem;
+    }
+
+    .welcome-card h1 {
+        font-size: 2rem;
+    }
+
+    .chart-flex {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    .chart-box {
+        flex: 1 1 300px;
+        min-height: 250px;
+        padding: 1rem;
+    }
+
+    .strategy-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .blogs-grid {
+        grid-template-columns: 1fr 350px;
+        gap: 2rem;
+    }
+
+    .articles-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .article-card {
+        padding: 1.5rem;
+        height: 320px;
+    }
+
+    .article-card-body {
+        -webkit-line-clamp: 5;
+    }
+
+    .dashboard-hero-split {
+        grid-template-columns: 300px 1fr;
+    }
+
+    .calculator-container {
+        max-width: 700px;
+    }
+
+    .calc-card {
+        padding: 2rem;
+    }
+
+    .calc-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .modal-card {
+        padding: 1.75rem;
+    }
+
+    .card-selector-grid.cols-3,
+    .card-selector-grid.cols-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES - DESKTOP (1024px and up)
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+    .app-header {
+        padding: 1rem 2rem;
+    }
+
+    .app-logo {
+        font-size: 1.5rem;
+    }
+
+    .app-nav {
+        display: flex;
+    }
+
+    .user-menu {
+        gap: 1.5rem;
+    }
+
+    .points-badge {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        gap: 0.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .auth-section {
+        padding: 4rem 2rem;
+    }
+
+    .auth-card {
+        padding: 2.5rem;
+    }
+
+    .app-content {
+        padding: 2rem 2rem;
+    }
+
+    .welcome-card {
+        padding: 2rem;
+    }
+
+    .welcome-card h1 {
+        font-size: 2.25rem;
+    }
+
+    .chart-container-card {
+        padding: 1.75rem;
+    }
+
+    .chart-flex {
+        gap: 1.5rem;
+        flex-direction: row;
+    }
+
+    .chart-box {
+        flex: 1 1 400px;
+        min-height: 300px;
+        padding: 1.5rem;
+    }
+
+    .strategy-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    .blogs-grid {
+        grid-template-columns: 1fr 400px;
+        gap: 2.5rem;
+    }
+
+    .post-blog-card {
+        position: sticky;
+        top: 90px;
+    }
+
+    .articles-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .article-card {
+        padding: 2rem;
+        height: 360px;
+    }
+
+    .article-card-body {
+        -webkit-line-clamp: 5;
+    }
+
+    .dashboard-hero-split {
+        grid-template-columns: 350px 1fr;
+        gap: 2.5rem;
+    }
+
+    .calculator-container {
+        max-width: 800px;
+    }
+
+    .calc-card {
+        padding: 2.5rem;
+    }
+
+    .calc-header h2 {
+        font-size: 1.85rem;
+    }
+
+    .modal-card {
+        max-width: 700px;
+        padding: 2rem;
+    }
+
+    .card-selector-grid.cols-4,
+    .card-selector-grid.cols-5 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card-selector-grid.cols-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES - LARGE SCREENS (1440px and up)
+   ========================================================================== */
+
+@media (min-width: 1440px) {
+    .app-content {
+        max-width: 1200px;
+        padding: 2.5rem auto;
+    }
+
+    .welcome-card h1 {
+        font-size: 2.75rem;
+    }
+
+    .dashboard-hero-split {
+        gap: 3rem;
+    }
+
+    .chart-box {
+        flex: 1 1 450px;
+    }
+
+    .articles-cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ==========================================================================
+   TOUCH-DEVICE OPTIMIZATIONS
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .selector-card,
+    .feature-block,
+    .blog-post-card,
+    .action-btn-like {
+        min-height: 44px;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .selector-card {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    body {
+        background: white;
+        color: #000;
+    }
+
+    .app-header,
+    .sidebar,
+    .modal-overlay,
+    .notification {
+        display: none;
+    }
+
+    .app-content {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .glass-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        background: white;
+    }
+}
