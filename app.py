@@ -10,6 +10,10 @@ def create_app():
     app = Flask(__name__, static_folder='static', static_url_path='/static')
     app.config.from_object(Config)
 
+    # Warn if SECRET_KEY not configured
+    if not app.config.get('SECRET_KEY'):
+        app.logger.warning('SECRET_KEY is not set. Set SECRET_KEY environment variable for production.')
+
     # Initialize extensions
     db.init_app(app)
     login_manager.init_app(app)
@@ -45,12 +49,31 @@ def create_app():
             db.session.add_all([art1, art2, art3])
             db.session.commit()
 
-        # Seed an admin user if it doesn't exist for testing moderation
-        if not User.query.filter_by(role='admin').first():
-            admin_user = User(username='admin', email='admin@carbon.com', role='admin')
-            admin_user.set_password('Admin123!')
-            db.session.add(admin_user)
-            db.session.commit()
+        # Seed an admin user only if ADMIN_PASSWORD is provided via environment.
+        # Do NOT create an admin with a missing/empty password.
+        admin_password = os.getenv("ADMIN_PASSWORD")
+        existing_admin = User.query.filter_by(role='admin').first()
+        if not existing_admin:
+            if admin_password:
+                admin_user = User(username='admin', email='admin@carbon.com', role='admin')
+                admin_user.set_password(admin_password)
+                db.session.add(admin_user)
+                db.session.commit()
+            else:
+                app.logger.warning('ADMIN_PASSWORD not set; skipping admin seeding for safety.')
+
+    # Add common security headers to all responses
+    @app.after_request
+    def set_security_headers(response):
+        # Prevent clickjacking
+        response.headers.setdefault('X-Frame-Options', 'DENY')
+        # Prevent MIME type sniffing
+        response.headers.setdefault('X-Content-Type-Options', 'nosniff')
+        # Improve Referrer policy
+        response.headers.setdefault('Referrer-Policy', 'no-referrer-when-downgrade')
+        # Basic Feature-Policy / Permissions-Policy (restrict APIs)
+        response.headers.setdefault('Permissions-Policy', 'geolocation=()')
+        return response
 
     return app
 

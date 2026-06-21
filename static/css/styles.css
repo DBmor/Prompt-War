@@ -3185,6 +3185,96 @@ body {
         max-width: 100%;
         height: auto;
     }
+
+    /* Fix overflowing metric & action cards */
+    .metrics-row,
+    .quick-actions-row,
+    .actions-grid {
+        width: 100%;
+    }
+
+    .metric-card,
+    .quick-action-card,
+    .action-log-card {
+        min-width: 0 !important;
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+
+    .actions-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Landing / welcome: force single-column and smaller titles */
+    .dashboard-welcome-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .welcome-title {
+        font-size: 1.25rem !important;
+        line-height: 1.2;
+    }
+
+    /* Auth landing split to single column (ensure any inline styles don't overflow) */
+    .auth-landing-container {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    .auth-landing-container .animate-gradient-text {
+        font-size: 1.6rem !important;
+    }
+
+    /* AI Coach: remove fixed viewport height, allow natural flow, reduce padding */
+    .ai-coach-container {
+        height: auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 12px;
+    }
+
+    .coach-header {
+        padding: 0.6rem 1rem !important;
+        gap: 0.5rem;
+    }
+
+    .chat-display-area {
+        padding: 1rem !important;
+        gap: 0.75rem;
+    }
+
+    .chat-bubble {
+        max-width: 100% !important;
+        box-sizing: border-box;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem;
+    }
+
+    .starter-chips-container {
+        padding: 0.5rem 1rem !important;
+    }
+
+    /* Reduce large card paddings that may cause overflow */
+    .glass-card,
+    .metric-card,
+    .quick-action-card,
+    .action-log-card {
+        padding-left: 0.9rem !important;
+        padding-right: 0.9rem !important;
+        padding-top: 0.9rem !important;
+        padding-bottom: 0.9rem !important;
+    }
+
+    /* Ensure no horizontal scrolling */
+    body, html {
+        overflow-x: hidden !important;
+    }
 }
 /* ==========================================================================
    RESPONSIVE MEDIA QUERIES - TABLET (768px and up)

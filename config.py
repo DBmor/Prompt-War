@@ -6,7 +6,9 @@ load_dotenv()
 
 class Config:
     """Application configuration class."""
-    SECRET_KEY = os.getenv('SECRET_KEY', 'super-secret-key-change-in-production')
+    # IMPORTANT: SECRET_KEY must come from environment in production.
+    # Fallback is empty to avoid accidentally using a known default in prod.
+    SECRET_KEY = os.getenv('SECRET_KEY') or None
     
     # Database URI - defaults to local SQLite file if DATABASE_URL is not set
     # Example for MySQL: mysql+pymysql://user:password@host:port/dbname
@@ -16,4 +18,8 @@ class Config:
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
+    # Secure session cookie settings
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SAMESITE = 'Lax'
 
