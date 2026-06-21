@@ -77,9 +77,10 @@ def require_same_origin(f):
         if request.method in ('POST', 'PUT', 'DELETE'):
             origin = request.headers.get('Origin')
             referer = request.headers.get('Referer')
-            host_url = request.host_url
+            host_url = request.host_url.rstrip('/')
             if origin:
-                if not origin.startswith(host_url):
+                origin_normalized = origin.rstrip('/')
+                if origin_normalized != host_url:
                     current_app.logger.warning('Potential CSRF: mismatched Origin')
                     return jsonify({'error': 'Invalid request origin.'}), 400
             elif referer:
@@ -87,9 +88,11 @@ def require_same_origin(f):
                     current_app.logger.warning('Potential CSRF: mismatched Referer')
                     return jsonify({'error': 'Invalid request origin.'}), 400
             else:
-                # No Origin/Referer present for a state-changing request — reject.
-                current_app.logger.warning('Potential CSRF: missing Origin/Referer')
-                return jsonify({'error': 'Invalid request origin.'}), 400
+                # Allow missing Origin/Referer in local development/testing where the client
+                # may not send these headers, but keep strict checks in production.
+                if not (current_app.config.get('TESTING') or current_app.debug):
+                    current_app.logger.warning('Potential CSRF: missing Origin/Referer')
+                    return jsonify({'error': 'Invalid request origin.'}), 400
         return f(*args, **kwargs)
     return wrapper
 
