@@ -2727,3 +2727,228 @@ body {
         font-size: 2rem !important;
     }
 }
+
+@media (max-width: 767px) {
+    html, body, .app-layout, .app-main-content, .app-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box;
+    }
+
+    .dashboard-welcome-header,
+    .dashboard-hero-split,
+    .metrics-row,
+    .quick-actions-row,
+    .actions-grid,
+    .industrial-stats-grid,
+    .industrial-details-grid,
+    .hero-features-grid,
+    .strategy-cards-grid,
+    .blogs-grid,
+    .articles-cards-grid,
+    .modal-metrics-grid,
+    .metric-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 1rem !important;
+    }
+
+    .dashboard-welcome-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+
+    .dashboard-welcome-header .motivational-card,
+    .gauge-card-left,
+    .info-card-right,
+    .metric-card,
+    .quick-action-card,
+    .action-log-card,
+    .glass-card,
+    .post-blog-card,
+    .calc-card,
+    .recommendations-card,
+    .scope-breakdown-card,
+    .admin-mod-card,
+    .modal-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+        box-sizing: border-box !important;
+    }
+
+    .metric-card,
+    .quick-action-card,
+    .action-log-card {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 0.75rem !important;
+    }
+
+    .metric-card {
+        padding: 1rem !important;
+    }
+
+    .metric-card .metric-icon-box,
+    .quick-action-card .qa-icon,
+    .action-log-card .action-icon,
+    .dashboard-welcome-header .motivational-icon,
+    .gauge-card-left .badge-status-container,
+    .coach-avatar {
+        min-width: 48px !important;
+        min-height: 48px !important;
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .metric-card .metric-info,
+    .quick-action-card .qa-info,
+    .action-log-card .action-body {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .quick-actions-row {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .quick-action-card {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        min-height: auto !important;
+    }
+
+    .qa-info h4 {
+        white-space: normal !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .qa-info p,
+    .metric-sub,
+    .action-body p,
+    .dashboard-welcome-header p,
+    .hero-description,
+    .feature-block p,
+    .strategy-card p,
+    .chat-bubble p {
+        line-height: 1.5 !important;
+        word-break: break-word !important;
+    }
+
+    .dashboard-hero-split {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .gauge-card-left,
+    .info-card-right {
+        padding: 1rem !important;
+    }
+
+    .actions-grid {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    .industrial-stats-grid,
+    .industrial-details-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .chart-flex {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    .chart-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 220px !important;
+    }
+
+    .ai-coach-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0.75rem auto !important;
+    }
+
+    .chat-display-area {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        gap: 1rem !important;
+    }
+
+    .chat-bubble {
+        max-width: 90% !important;
+        width: auto !important;
+        box-sizing: border-box !important;
+        word-break: break-word !important;
+    }
+
+    .chat-input-row {
+        flex-wrap: wrap !important;
+        padding: 1rem !important;
+        gap: 0.75rem !important;
+    }
+
+    .chat-input-row input {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .chat-input-row button {
+        width: 100% !important;
+    }
+
+    .btn-block,
+    .btn,
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .notification,
+    .modal-card,
+    .table-container,
+    .admin-table {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .auth-landing-container,
+    .landing-feature-item,
+    .landing-info-col,
+    .landing-form-col,
+    .post-blog-card {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .blog-post-card,
+    .article-card,
+    .metric-info-box,
+    .scope-box,
+    .strategy-card {
+        width: 100% !important;
+    }
+}
